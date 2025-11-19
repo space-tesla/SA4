@@ -1,0 +1,21 @@
+Slip 4b 
+Q2 Write a program to sense a finger when it is placed on the board Arduino. 
+#include <CapacitiveSensor.h> 
+const int touchPin = 2;              
+const int touchThreshold = 50;       
+// Capacitive sensing pin 
+// Sensitivity threshold 
+// Create capacitive sensor object (send pin = 0, receive pin = touchPin) 
+CapacitiveSensor touchSensor = CapacitiveSensor(0, touchPin); 
+void setup() { 
+Serial.begin(9600);                
+} 
+void loop() { 
+// Start serial monitor 
+long touchValue = touchSensor.capacitiveSensor(30);  // Read capacitive value 
+if (touchValue > touchThreshold) {    // Check if finger is detected 
+Serial.println("Finger detected!"); 
+delay(1000);                        
+// Delay to avoid repeated detection 
+} 
+}
